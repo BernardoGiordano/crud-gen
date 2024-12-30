@@ -11,17 +11,13 @@ import {
   renderServiceTemplate,
 } from './renderer';
 import { capitalizeFirstLetter, createDirectoryIfNotExists } from './utils';
+import path from 'node:path';
 
 export function createCrud(
   options: ProgramOptions,
   config: AppConfig,
   survey: Survey
 ) {
-  // console.log('Creating CRUD');
-  // console.log('Options', options);
-  // console.log('Config', config);
-  // console.log('Survey', survey);
-
   const modules_base_package = config.project.modules_base_package;
   const models_base_package = config.project.models_base_package;
   const repositories_base_package = config.project.repositories_base_package;
@@ -47,9 +43,13 @@ export function createCrud(
   const controller_class_name = crud_name_capitalized + 'Controller';
   const service_class_name = crud_name_capitalized + 'Service';
 
-  const base_package_path = `${config.project.base_path}/${config.project.modules_base_path}`;
-  const package_path = `${base_package_path}/${crud_name_lowercase}`;
-  const vo_path = `${package_path}/vo`;
+  const base_package_path = path.join(
+    config.project.base_path,
+    config.project.modules_base_path
+  );
+  const package_path = path.join(base_package_path, crud_name_lowercase);
+  const vo_path = path.join(package_path, 'vo');
+  const exception_path = path.join(package_path, 'exception');
 
   const templateVars: TemplateVars = {
     modules_base_package: modules_base_package,
@@ -81,64 +81,71 @@ export function createCrud(
   renderBasicViewTemplate(
     config,
     templateVars,
-    `${vo_path}/${basic_view_class_name}.java`
+    path.join(vo_path, `${basic_view_class_name}.java`)
   );
 
   renderInfoViewTemplate(
     config,
     templateVars,
-    `${vo_path}/${info_view_class_name}.java`
+    path.join(vo_path, `${info_view_class_name}.java`)
   );
 
   renderCompleteViewTemplate(
     config,
     templateVars,
-    `${vo_path}/${complete_view_class_name}.java`
+    path.join(vo_path, `${complete_view_class_name}.java`)
   );
 
   // 3. create controller
   renderControllerTemplate(
     config,
     templateVars,
-    `${config.project.base_path}/${controllers_base_path}/${controller_class_name}.java`
+    path.join(
+      config.project.base_path,
+      controllers_base_path,
+      `${controller_class_name}.java`
+    )
   );
 
   // 4. create service
   renderServiceTemplate(
     config,
     templateVars,
-    `${package_path}/${service_class_name}.java`
+    path.join(package_path, `${service_class_name}.java`)
   );
 
   // 5. create repository
   renderRepositoryTemplate(
     config,
     templateVars,
-    `${config.project.base_path}/${repositories_base_path}/${crud_name_capitalized}Repository.java`
+    path.join(
+      config.project.base_path,
+      repositories_base_path,
+      `${crud_name_capitalized}Repository.java`
+    )
   );
 
   // 6. create dto
   renderDtoTemplate(
     config,
     templateVars,
-    `${package_path}/${crud_name_capitalized}Dto.java`
+    path.join(package_path, `${crud_name_capitalized}Dto.java`)
   );
 
   // 7. create exception directory if it doesn't exist
-  const exception_path = `${package_path}/exception`;
   createDirectoryIfNotExists(exception_path);
 
   // 8. create exceptions
   renderNotFoundExceptionTemplate(
     config,
     templateVars,
-    `${exception_path}/${crud_name_capitalized}NotFoundException.java`
+    path.join(exception_path, `${crud_name_capitalized}NotFoundException.java`)
   );
 
   // 9. create mapper
   renderMapperTemplate(
     config,
     templateVars,
-    `${package_path}/${crud_name_capitalized}Mapper.java`
+    path.join(package_path, `${crud_name_capitalized}Mapper.java`)
   );
 }

@@ -13,7 +13,8 @@
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "rm -rf ./dist",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "format": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
