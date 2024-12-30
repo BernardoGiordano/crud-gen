@@ -11,6 +11,17 @@ export const prompts: any = [
     },
   },
   {
+    name: 'crud_name_plural',
+    message: 'Plural name (ex. Users):',
+    validate: (input: string) => {
+      // FIXME: check only a-zA-Z
+      if (!input) {
+        return 'Name is required';
+      }
+      return true;
+    },
+  },
+  {
     name: 'name_attribute',
     message: 'Name attribute (ex. name):',
     validate: (input: string) => {
