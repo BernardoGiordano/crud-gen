@@ -1,15 +1,9 @@
 import ejs from 'ejs';
-import {AppConfig, ServiceTemplateVars} from './types';
+import { AppConfig, TemplateVars } from './types';
 import * as fs from 'node:fs';
 import path from 'node:path';
-import {
-  BasicViewTemplateVars,
-  CompleteViewTemplateVars,
-  ControllerTemplateVars,
-  InfoViewTemplateVars
-} from './types';
 
-export function renderTemplate(
+function renderTemplate(
   config: AppConfig,
   templateName: string,
   vars: object,
@@ -31,7 +25,7 @@ export function renderTemplate(
 
 export function renderBasicViewTemplate(
   config: AppConfig,
-  vars: BasicViewTemplateVars,
+  vars: TemplateVars,
   destination: string
 ) {
   renderTemplate(config, 'basic-view', vars, destination);
@@ -39,7 +33,7 @@ export function renderBasicViewTemplate(
 
 export function renderInfoViewTemplate(
   config: AppConfig,
-  vars: InfoViewTemplateVars,
+  vars: TemplateVars,
   destination: string
 ) {
   renderTemplate(config, 'info-view', vars, destination);
@@ -47,7 +41,7 @@ export function renderInfoViewTemplate(
 
 export function renderCompleteViewTemplate(
   config: AppConfig,
-  vars: CompleteViewTemplateVars,
+  vars: TemplateVars,
   destination: string
 ) {
   renderTemplate(config, 'complete-view', vars, destination);
@@ -55,7 +49,7 @@ export function renderCompleteViewTemplate(
 
 export function renderControllerTemplate(
   config: AppConfig,
-  vars: ControllerTemplateVars,
+  vars: TemplateVars,
   destination: string
 ) {
   renderTemplate(config, 'controller', vars, destination);
@@ -63,8 +57,40 @@ export function renderControllerTemplate(
 
 export function renderServiceTemplate(
   config: AppConfig,
-  vars: ServiceTemplateVars,
+  vars: TemplateVars,
   destination: string
 ) {
   renderTemplate(config, 'service', vars, destination);
+}
+
+export function renderRepositoryTemplate(
+  config: AppConfig,
+  vars: TemplateVars,
+  destination: string
+) {
+  renderTemplate(config, 'repository', vars, destination);
+}
+
+export function renderDtoTemplate(
+  config: AppConfig,
+  vars: TemplateVars,
+  destination: string
+) {
+  renderTemplate(config, 'dto', vars, destination);
+}
+
+export function renderNotFoundExceptionTemplate(
+  config: AppConfig,
+  vars: TemplateVars,
+  destination: string
+) {
+  renderTemplate(config, 'not-found-exception', vars, destination);
+}
+
+export function renderMapperTemplate(
+  config: AppConfig,
+  vars: TemplateVars,
+  destination: string
+) {
+  renderTemplate(config, 'mapper', vars, destination);
 }

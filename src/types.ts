@@ -27,53 +27,23 @@ export type Survey = {
   name_attribute: string;
 };
 
-export interface BasicViewTemplateVars {
+export interface TemplateVars {
   modules_base_package: string;
   crud_name_lowercase: string;
   models_base_package: string;
   crud_name_capitalized: string;
   name_attribute_capitalized: string;
-  view_class_name: string;
-}
-
-export interface InfoViewTemplateVars {
-  modules_base_package: string;
-  crud_name_lowercase: string;
-  models_base_package: string;
-  crud_name_capitalized: string;
-  view_class_name: string;
-}
-
-export interface CompleteViewTemplateVars {
-  modules_base_package: string;
-  crud_name_lowercase: string;
-  models_base_package: string;
-  crud_name_capitalized: string;
-  view_class_name: string;
-}
-
-export interface ControllerTemplateVars {
+  basic_view_class_name: string;
+  info_view_class_name: string;
+  complete_view_class_name: string;
   controllers_base_package: string;
   principal_package: string;
   principal_class: string;
-  modules_base_package: string;
-  crud_name_lowercase: string;
-  crud_name_capitalized: string;
   crud_name_uppercase: string;
   crud_name_capitalized_plural: string;
   crud_name_lowercase_plural: string;
   controller_class_name: string;
-}
-
-export interface ServiceTemplateVars {
-  modules_base_package: string;
-  crud_name_lowercase: string;
-  models_base_package: string;
-  crud_name_capitalized: string;
   repositories_base_package: string;
-  principal_package: string;
-  principal_class: string;
   service_class_name: string;
-  name_attribute_capitalized: string;
-  crud_name_capitalized_plural: string;
+  name_attribute_lowercase: string;
 }
