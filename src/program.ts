@@ -44,7 +44,11 @@ export function createBackendCrud(
   const crud_name_lowercase = survey.crud_name.toLowerCase();
   const crud_name_uppercase = survey.crud_name.toUpperCase();
   const crud_name_capitalized = capitalizeFirstLetter(crud_name_lowercase);
-  const name_attribute_lowercase = survey.name_attribute.toLowerCase();
+
+  const name_attribute_lowercase =
+    survey.name_attribute.charAt(0).toLowerCase() +
+    survey.name_attribute.slice(1);
+
   const name_attribute_capitalized = capitalizeFirstLetter(
     name_attribute_lowercase
   );
@@ -175,7 +179,11 @@ export function createFrontendCrud(
   const crud_name_lowercase = survey.crud_name.toLowerCase();
   const crud_name_uppercase = survey.crud_name.toUpperCase();
   const crud_name_capitalized = capitalizeFirstLetter(crud_name_lowercase);
-  const name_attribute_lowercase = survey.name_attribute.toLowerCase();
+
+  const name_attribute_lowercase =
+    survey.name_attribute.charAt(0).toLowerCase() +
+    survey.name_attribute.slice(1);
+
   const name_attribute_capitalized = capitalizeFirstLetter(
     name_attribute_lowercase
   );
