@@ -1,7 +1,7 @@
 {
   "name": "@bernardogiordano/crud-gen",
   "version": "0.0.1",
-  "description": "CRUD generator for Java projects",
+  "description": "CRUD generator for Java/Angular projects",
   "main": "./dist/index.js",
   "files": [
     "bin",
